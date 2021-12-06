@@ -2,13 +2,15 @@ import "./App.css";
 import { Route, Switch } from "react-router";
 import MetadataList from "./pages/metadata-list";
 import AddMetadata from "./pages/add-metadata";
+import MetadataAppBar from "./pages/app-bar";
 import EditMetadata from "./pages/edit-metadata";
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <Switch>
         <Route path="/" exact>
+          <MetadataAppBar url={props.url}/>
           <AddMetadata/>
           <MetadataList></MetadataList>
         </Route>
