@@ -10,18 +10,31 @@ import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteOne, listAll } from "../actions/metadatas";
+import { getUserInfo } from "../actions/user";
 import { useHistory } from "react-router";
+import {
+  useLocation
+} from "react-router-dom";
 
 export default function MetadataList() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
   const { metadatas } = useSelector((state) => ({
     metadatas:
       state.metadatas.results.length === 0 ? [] : state.metadatas.results,
   }));
+  const { user } = useSelector((state) => ({
+    user:
+      state.user.user,
+  }));
   useEffect(() => {
+    console.log(location);
+    let searchParams = new URLSearchParams(location.search);
+    console.log(searchParams.get("code"));
+    dispatch(getUserInfo(searchParams.get("code")));
     dispatch(listAll());
-  }, []);
+  }, [location]);
 
   const handleDelete = (id) => {
     dispatch(deleteOne(id));

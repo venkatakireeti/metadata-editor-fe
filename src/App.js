@@ -10,9 +10,9 @@ function App(props) {
     <div className="App">
       <Switch>
         <Route path="/" exact>
-          <MetadataAppBar url={props.url}/>
+          { props.user ? <div><MetadataAppBar url={props.url} user={props.user} />
           <AddMetadata/>
-          <MetadataList></MetadataList>
+          <MetadataList></MetadataList></div> : <MetadataAppBar url={props.url}/>}
         </Route>
         <Route path="/edit/:id" exact>
           <EditMetadata></EditMetadata>

@@ -25,7 +25,10 @@ export default function MetadataAppBar(props) {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             MetadataList
           </Typography>
-          <Button color="inherit" href={props.url}>Login</Button>
+          {props.user ? <Typography variant="h6" component="div">
+            {props.user}
+          </Typography> : <Button color="inherit" href={props.url}>Login</Button> }
+          
         </Toolbar>
       </AppBar>
     </Box>
