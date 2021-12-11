@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useEffect, useState } from "react";
 
 export default function MetadataAppBar(props) {
@@ -25,9 +26,17 @@ export default function MetadataAppBar(props) {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             MetadataList
           </Typography>
-          {props.user ? <Typography variant="h6" component="div">
+          {props.user ? <div> <Typography variant="h6" component="div">
             {props.user}
-          </Typography> : <Button color="inherit" href={props.url}>Login</Button> }
+          </Typography>           <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="logout"
+            sx={{ mr: 2 }}
+          >
+            <LogoutIcon />
+          </IconButton></div> : <Button color="inherit" href={props.url}>Login</Button> }
           
         </Toolbar>
       </AppBar>
