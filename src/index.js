@@ -11,7 +11,7 @@ async function main() {
   const urlParams = queryString.parse(window.location.search);
   const response = await fetch("http://ec2-18-217-55-36.us-east-2.compute.amazonaws.com:8081/api/metadatas/login/url");
   const url = await response.text();
-  const user = undefined;
+  let user = undefined;
   if (urlParams.error) {
     console.log(`An error occurred: ${urlParams.error}`);
   } else {
