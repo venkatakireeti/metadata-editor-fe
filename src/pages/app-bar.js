@@ -8,11 +8,15 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 
 export default function MetadataAppBar(props) {
 
+    const history = useHistory();
+
     const handleLogout = () => {
         localStorage.clear();
+        history.push("/");
     }
   return (
     <Box sx={{ flexGrow: 1 }}>
