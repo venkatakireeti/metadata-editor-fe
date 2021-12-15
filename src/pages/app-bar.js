@@ -10,6 +10,10 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useEffect, useState } from "react";
 
 export default function MetadataAppBar(props) {
+
+    const handleLogout = () => {
+        localStorage.clear();
+    }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -35,7 +39,7 @@ export default function MetadataAppBar(props) {
             aria-label="logout"
             sx={{ mr: 2 }}
           >
-            <LogoutIcon />
+            <LogoutIcon onClick={handleLogout}/>
           </IconButton></div> : <Button color="inherit" href={props.url}>Login</Button> }
           
         </Toolbar>

@@ -18,6 +18,17 @@ async function main() {
       const data = await response.json();
       console.log(data);
       localStorage.setItem("token", data.accessToken);
+      const response2 = await fetch("http://ec2-18-217-55-36.us-east-2.compute.amazonaws.com:8081/api/metadatas/user",{
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          'x-access-token': data.accessToken
+        }
+      })
+      const data2 = await response2.json();
+      console.log(data2);
+      localStorage.setItem("user", data2.user);
+      const userName = data2.user.name;
+      componentToLoad = <App user={userName} history={getHistory()} />;
     } else {
       const response = await fetch("http://ec2-18-217-55-36.us-east-2.compute.amazonaws.com:8081/api/metadatas/login/url");
       const url = await response.text();
