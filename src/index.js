@@ -35,7 +35,7 @@ async function main() {
     console.log(data);
     localStorage.setItem("user", data.user);
     const userName = data.user.name;
-    componentToLoad = <App user={data.userName} history={getHistory()} />;
+    componentToLoad = <App user={userName} history={getHistory()} />;
   }
   const store = createStore();
   ReactDOM.render(
