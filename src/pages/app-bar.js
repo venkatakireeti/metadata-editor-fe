@@ -16,7 +16,9 @@ export default function MetadataAppBar(props) {
 
     const handleLogout = () => {
         localStorage.clear();
-        history.replace("/");
+        if (localStorage.getItem("token")) {     
+            window.location.reload();
+        }
     }
   return (
     <Box sx={{ flexGrow: 1 }}>
