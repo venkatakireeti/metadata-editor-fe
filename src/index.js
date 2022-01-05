@@ -42,11 +42,20 @@ async function main() {
         'x-access-token': accessToken
       }
     })
-    const data = await response.json();
-    console.log(data);
-    localStorage.setItem("user", data.user);
-    const userName = data.user.name;
-    componentToLoad = <App user={userName} history={getHistory()} />;
+    if(response.ok) {
+      const data = await response.json();
+      console.log(data);
+      localStorage.setItem("user", data.user);
+      const userName = data.user.name;
+      componentToLoad = <App user={userName} history={getHistory()} />;
+    } else {
+      localStorage.clear();
+      const response = await fetch("http://ec2-18-217-55-36.us-east-2.compute.amazonaws.com:8081/api/metadatas/login/url");
+      const url = await response.text();
+      console.log(url);
+      componentToLoad = <App url={url} history={getHistory()} />;
+    }
+    
   }
   const store = createStore();
   ReactDOM.render(
